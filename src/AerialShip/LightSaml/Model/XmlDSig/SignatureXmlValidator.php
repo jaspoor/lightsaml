@@ -96,8 +96,8 @@ class SignatureXmlValidator extends Signature implements LoadFromXmlInterface, S
         if ($this->signature == null) {
             return false;
         }
-        if ($key->type != \XMLSecurityKey::RSA_SHA1) {
-            throw new SecurityException('Key type must be RSA_SHA1 but got '.$key->type);
+        if ($key->type != \XMLSecurityKey::RSA_SHA256) {
+            throw new SecurityException('Key type must be RSA_SHA256 but got '.$key->type);
         }
 
         $key = $this->castKeyIfNecessary($key);
@@ -157,7 +157,7 @@ class SignatureXmlValidator extends Signature implements LoadFromXmlInterface, S
     private function castKeyIfNecessary(\XMLSecurityKey $key)
     {
         $algorithm = $this->getAlgorithm();
-        if ($key->type === \XMLSecurityKey::RSA_SHA1 && $algorithm !== $key->type) {
+        if ($key->type === \XMLSecurityKey::RSA_SHA256 && $algorithm !== $key->type) {
             $key = KeyHelper::castKey($key, $algorithm);
         }
 
