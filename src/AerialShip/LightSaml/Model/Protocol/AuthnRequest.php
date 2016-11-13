@@ -127,7 +127,8 @@ class AuthnRequest extends AbstractRequest
 
         $result->setAttribute('AssertionConsumerServiceURL', $this->getAssertionConsumerServiceURL());
         $result->setAttribute('ProtocolBinding', $this->getProtocolBinding());
-
+        $result->setAttribute('ForceAuth', 'true');
+        
         $nameIDPolicyNode = $context->getDocument()->createElementNS(Protocol::SAML2, 'samlp:NameIDPolicy');
         $result->appendChild($nameIDPolicyNode);
         $nameIDPolicyNode->setAttribute('Format', $this->getNameIdPolicyFormat());
